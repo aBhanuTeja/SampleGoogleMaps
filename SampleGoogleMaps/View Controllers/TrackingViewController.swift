@@ -52,11 +52,7 @@ class TrackingViewController: UIViewController {
 
         addressFullData.append(AddressesStorableData(id: id, addressesData: savingAllAddresses))
         UserDefaultsAddressData.save(addressFullData)
-    }
-    
-//    @objc func restaurantTapped(tag: Int) {
-//        print(savingAllAddresses[tag])
-//    }
+    }    
 }
 
 extension TrackingViewController: GMSMapViewDelegate {
@@ -76,14 +72,13 @@ extension TrackingViewController: GMSMapViewDelegate {
         descriptionView.setData(address: data.address, title: data.description)
         descriptionView.layer.borderColor = UIColor.red.withAlphaComponent(0.5).cgColor
         descriptionView.layer.borderWidth = 1
-//        self.view.addSubview(descriptionView)
         return descriptionView
     }
     
 //    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
 //        guard let customMarkerView = marker.iconView as? CustomMarkerView else { return }
 //        let tag = customMarkerView.tag
-//        restaurantTapped(tag: tag)
+//        notesTapped(tag: tag)
 //    }
     
     func mapView(_ mapView: GMSMapView, didCloseInfoWindowOf marker: GMSMarker) {
@@ -92,54 +87,3 @@ extension TrackingViewController: GMSMapViewDelegate {
         marker.iconView = customMarker
     }
 }
-/*
-extension TrackingViewController {
-    func methodType(url: String, params: [String: Any]? = nil,
-                           completionHandler:((_ response: Any?, _ status: Bool) -> Void)?) -> Void {
-        print("url =====> \(url)")
-        let endPointURL = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-        var urlRequest = URLRequest.init(url: URL.init(string: endPointURL!)!)
-        if params != nil{
-            let postData = try? JSONSerialization.data(withJSONObject: params!, options: .init(rawValue: 0))
-            urlRequest.httpBody = postData
-            let jsonInputData = try? JSONSerialization.data(withJSONObject: params!, options: .prettyPrinted)
-            let requestBody = String(data:jsonInputData!, encoding:String.Encoding.utf8)
-            print("requestBody ====>\(requestBody!)")
-        }
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.timeoutInterval = 30
-        self.sessionWithRequest(urlRequest: urlRequest, completionHandler: completionHandler)
-    }
-    
-    //MARK:- SessionRequest
-    func sessionWithRequest(urlRequest: URLRequest,
-                                  completionHandler:((_ response: Any?, _ status: Bool) -> Void)?){
-        let sessionConguration = URLSessionConfiguration.default
-        let defaultSession = URLSession.init(configuration: sessionConguration)
-        
-        let dataTask = defaultSession.dataTask(with: urlRequest) { (data, response, error) in
-            let responseFromServer = response as? HTTPURLResponse
-            let code = responseFromServer?.statusCode
-            if error == nil && data != nil{
-                let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: .init(rawValue: 0))
-                print(jsonResponse!)
-                if code == 200 {
-                    if let jSONData = data{
-                        completionHandler!(jSONData, true)
-                    }
-                    else{
-                        print("something went wrong")
-                    }
-                }else {
-                    print(jsonResponse as Any)
-                }
-            }else{
-                print(error.debugDescription)
-            }
-        }
-        dataTask.resume()
-    }
-}
-*/
-
