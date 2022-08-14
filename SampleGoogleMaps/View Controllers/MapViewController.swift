@@ -230,28 +230,6 @@ extension MapViewController: GMSMapViewDelegate {
         currentLong = circleCenter.longitude
         setLocationAnnotation(location: CLLocationCoordinate2D(latitude: currentLat, longitude: currentLong))
     }
-    /*
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        guard let customMarkerView = marker.iconView as? CustomMarkerView else {
-            return false
-        }
-        let customMarker = CustomMarkerView(tag: customMarkerView.tag)
-        marker.iconView = customMarker
-        return false
-    }
-    
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        textEntryView = Bundle.main.loadNibNamed("TextEntryView", owner: nil, options: nil)?[0] as? TextEntryView
-        textEntryView.layer.borderColor = UIColor.red.withAlphaComponent(0.5).cgColor
-        textEntryView.layer.borderWidth = 1
-        return textEntryView
-    }
-        
-    func mapView(_ mapView: GMSMapView, didCloseInfoWindowOf marker: GMSMarker) {
-        guard let customMarkerView = marker.iconView as? CustomMarkerView else { return }
-        let customMarker = CustomMarkerView(tag: customMarkerView.tag)
-        marker.iconView = customMarker
-    }*/
 }
 
 //MARK: CLLocationManager Delegates
